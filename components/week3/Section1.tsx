@@ -6,7 +6,7 @@ export default function Section1() {
         <View style={{ flex: 1 }}>
             <View style={{ flexDirection: 'row' }}>
                 <Image
-                    source={require('../../assets/week3/room-6.jpg')}
+                    source={require('@/assets/week3/room-6.jpg')}
                     style={{ flex: 1, aspectRatio: 3 }}
                     resizeMode="cover"
                 />

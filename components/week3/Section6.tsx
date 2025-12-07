@@ -7,7 +7,7 @@ export default function Section6() {
             <Text style={{ fontWeight: 'bold' }}>Location</Text>
             <Text>218 Austen Mountain, consectetur adipiscing, sed do eiusmod tempor incididunt ut labore et…</Text>
             <View style={{ marginTop: 16 }}>
-                <Image source={require('../../assets/week3/map.jpg')} />
+                <Image source={require('@/assets/week3/map.jpg')} />
             </View>
         </View>
     );

@@ -44,6 +44,9 @@ export default function Index() {
                 <Link href="/resort" style={styles.link}>
                     <Text style={styles.linkText}>ไปหน้า Resort</Text>
                 </Link>
+                <Link href="/health" style={styles.link}>
+                    <Text style={styles.linkText}>ไปหน้า Health</Text>
+                </Link>
             </View>
         </ScrollView>
     );

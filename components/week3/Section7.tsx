@@ -10,7 +10,8 @@ export default function Section7() {
                     <View>
                         <Image
                             source={require('../../assets/week3/room-8.jpg')}
-                            style={{ width: 100, height: 120, resizeMode: 'cover', borderRadius: 10 }}
+                            style={{ width: 100, height: 120, borderRadius: 10 }}
+                            resizeMode="cover"
                         />
                     </View>
                     <View style={{ flex: 1, marginLeft: 12, justifyContent: 'space-around', flexDirection: 'column' }}>

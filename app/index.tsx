@@ -50,6 +50,15 @@ export default function Index() {
                 <Link href="/home" style={styles.link}>
                     <Text style={styles.linkText}>ไปหน้า Home</Text>
                 </Link>
+                <Link href="/chart" style={styles.link}>
+                    <Text style={styles.linkText}>ไปหน้า Chart</Text>
+                </Link>
+                <Link href="/your-health" style={styles.link}>
+                    <Text style={styles.linkText}>ไปหน้า Your Health</Text>
+                </Link>
+                <Link href="/todolist" style={styles.link}>
+                    <Text style={styles.linkText}>ไปหน้า Todo List</Text>
+                </Link>
             </View>
         </ScrollView>
     );

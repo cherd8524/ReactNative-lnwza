@@ -59,6 +59,9 @@ export default function Index() {
                 <Link href="/todolist" style={styles.link}>
                     <Text style={styles.linkText}>ไปหน้า Todo List</Text>
                 </Link>
+                <Link href="/location" style={styles.link}>
+                    <Text style={styles.linkText}>ไปหน้า Location</Text>
+                </Link>
             </View>
         </ScrollView>
     );

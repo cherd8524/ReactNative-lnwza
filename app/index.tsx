@@ -62,6 +62,12 @@ export default function Index() {
                 <Link href="/location" style={styles.link}>
                     <Text style={styles.linkText}>ไปหน้า Location</Text>
                 </Link>
+                <Link href="/ant" style={styles.link}>
+                    <Text style={styles.linkText}>ไปหน้า Heros</Text>
+                </Link>
+                <Link href="/charmander" style={styles.link}>
+                    <Text style={styles.linkText}>ไปหน้า Pokemon</Text>
+                </Link>
             </View>
         </ScrollView>
     );

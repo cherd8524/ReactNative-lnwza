@@ -3,7 +3,7 @@ import { Button, ScrollView, StyleSheet, Text, View } from "react-native";
 
 export default function Index() {
     return (
-        <ScrollView style={{ flex:1 }} >
+        <ScrollView style={{ flex: 1 }} >
             <View style={styles.container} >
                 <Link href="/flexbox/ex01" style={styles.link}>
                     <Text style={styles.linkText}>ไปหน้า Exercise 1</Text>
@@ -67,6 +67,12 @@ export default function Index() {
                 </Link>
                 <Link href="/charmander" style={styles.link}>
                     <Text style={styles.linkText}>ไปหน้า Pokemon</Text>
+                </Link>
+                <Link href="/book" style={styles.link}>
+                    <Text style={styles.linkText}>ไปหน้า Book</Text>
+                </Link>
+                <Link href="/book-online" style={styles.link}>
+                    <Text style={styles.linkText}>ไปหน้า Book Online</Text>
                 </Link>
             </View>
         </ScrollView>

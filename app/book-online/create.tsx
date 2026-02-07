@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { View, TextInput, Button, Image, Alert, StyleSheet, Text, ScrollView } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { useNavigation, useRouter } from "expo-router";
-import { addBookDatabase } from "@/utils/book-service";
+import { addBookDatabase, uploadBookImage } from "@/utils/book-service";
 import { Book } from "@/utils/types";
 
 export default function CreateBook() {
@@ -38,20 +38,31 @@ export default function CreateBook() {
         }
     };
 
+    const isLocalUri = (uri: string) => uri.startsWith("file://") || uri.startsWith("content://");
+
     const handleSave = async () => {
         if (!title.trim()) {
             Alert.alert("Validation", "กรุณากรอกชื่อหนังสือ");
             return;
         }
-        const book: Book = {
-            id: Date.now().toString(),
-            title: title.trim(),
-            description: description.trim(),
-            price: Number(price) || 0,
-            image,
-        };
-        await addBookDatabase(book);
-        router.navigate("/book-online"); // กลับไปหน้า list
+        try {
+            let imageUrl = image;
+            if (isLocalUri(image)) {
+                imageUrl = await uploadBookImage(image);
+            }
+            const book: Book = {
+                id: Date.now().toString(),
+                title: title.trim(),
+                description: description.trim(),
+                price: Number(price) || 0,
+                image: imageUrl,
+            };
+            await addBookDatabase(book);
+            router.navigate("/book-online"); // กลับไปหน้า list
+        } catch (e) {
+            console.error("handleSave", e);
+            Alert.alert("Error", "บันทึกไม่สำเร็จ หรืออัปโหลดรูปไม่สำเร็จ");
+        }
     };
 
     return (

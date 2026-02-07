@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
-import { getBooksDatabase, updateBookDatabase } from "@/utils/book-service";
+import { getBooksDatabase, updateBookDatabase, uploadBookImage } from "@/utils/book-service";
 import { Book } from "@/utils/types";
 
 export default function EditBook() {
@@ -60,21 +60,32 @@ export default function EditBook() {
         }
     };
 
+    const isLocalUri = (uri: string) => uri.startsWith("file://") || uri.startsWith("content://");
+
     const handleUpdate = async () => {
         if (!book) return;
         if (!title.trim()) {
             Alert.alert("Validation", "กรุณากรอกชื่อหนังสือ");
             return;
         }
-        const updated: Book = {
-            ...book,
-            title: title.trim(),
-            description: description.trim(),
-            price: Number(price) || 0,
-            image,
-        };
-        await updateBookDatabase(updated);
-        router.navigate(`/book/${book.id}`);
+        try {
+            let imageUrl = image;
+            if (isLocalUri(image)) {
+                imageUrl = await uploadBookImage(image);
+            }
+            const updated: Book = {
+                ...book,
+                title: title.trim(),
+                description: description.trim(),
+                price: Number(price) || 0,
+                image: imageUrl,
+            };
+            await updateBookDatabase(book.id, updated);
+            router.navigate(`/book-online/${book.id}`);
+        } catch (e) {
+            console.error("handleUpdate", e);
+            Alert.alert("Error", "อัปเดตไม่สำเร็จ หรืออัปโหลดรูปไม่สำเร็จ");
+        }
     };
 
     if (!book)

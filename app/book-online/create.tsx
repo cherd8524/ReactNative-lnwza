@@ -1,10 +1,10 @@
 // app/book-online/create.tsx
-import React, { useState } from "react";
-import { View, TextInput, Button, Image, Alert, StyleSheet, Text, ScrollView } from "react-native";
-import * as ImagePicker from "expo-image-picker";
-import { useNavigation, useRouter } from "expo-router";
 import { addBookDatabase, uploadBookImage } from "@/utils/book-service";
 import { Book } from "@/utils/types";
+import * as ImagePicker from "expo-image-picker";
+import { useNavigation, useRouter } from "expo-router";
+import React, { useState } from "react";
+import { Alert, Button, Image, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 
 export default function CreateBook() {
     const [title, setTitle] = useState("");
@@ -32,7 +32,10 @@ export default function CreateBook() {
         });
         if (!res.canceled) {
             // setImage(res.uri);
-            setImage(res.assets[0].uri);
+            // setImage(res.assets[0].uri);
+            const uploadedUrl = await uploadBookImage(res.assets[0].uri);
+            setImage(uploadedUrl);
+            console.log("Uploaded image URL:", uploadedUrl);
         } else {
             Alert.alert("Cancelled", "คุณไม่ได้เลือกรูปภาพ หรือ error เกิดขึ้น");
         }

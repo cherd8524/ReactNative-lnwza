@@ -1,19 +1,19 @@
 // app/book-online/edit/[id].tsx
-import React, { useEffect, useState } from "react";
-import {
-    View,
-    TextInput,
-    Button,
-    Image,
-    Alert,
-    StyleSheet,
-    Text,
-    ScrollView,
-} from "react-native";
-import * as ImagePicker from "expo-image-picker";
-import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
 import { getBooksDatabase, updateBookDatabase, uploadBookImage } from "@/utils/book-service";
 import { Book } from "@/utils/types";
+import * as ImagePicker from "expo-image-picker";
+import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
+import React, { useEffect, useState } from "react";
+import {
+    Alert,
+    Button,
+    Image,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TextInput,
+    View,
+} from "react-native";
 
 export default function EditBook() {
     const { id } = useLocalSearchParams<{ id: string }>();
@@ -56,7 +56,10 @@ export default function EditBook() {
             quality: 0.7,
         });
         if (!res.canceled) {
-            setImage(res.assets[0].uri);
+            // setImage(res.assets[0].uri);
+            const uploadedUrl = await uploadBookImage(res.assets[0].uri);
+            setImage(uploadedUrl);
+            console.log("Uploaded image URL:", uploadedUrl);
         }
     };
 

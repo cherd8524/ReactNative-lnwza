@@ -74,6 +74,9 @@ export default function Index() {
                 <Link href="/book-online" style={styles.link}>
                     <Text style={styles.linkText}>ไปหน้า Book Online</Text>
                 </Link>
+                <Link href="/profile" style={styles.link}>
+                    <Text style={styles.linkText}>ไปหน้า Profile</Text>
+                </Link>
             </View>
         </ScrollView>
     );
